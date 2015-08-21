@@ -55,5 +55,7 @@ node_modules/
 # virtual environments
 .env
 
-# secret configuration info.
+# secret configuration info. and local settings
 secrets.txt
+
+config/settings/local.py
