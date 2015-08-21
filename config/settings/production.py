@@ -143,8 +143,9 @@ CACHES = {
 }
 
 
-# Sentry Configuration
+# Sentry Configuration - CURRENTLY DISABLED, with file-based logging used instead
 SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT')
+"""
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -187,6 +188,7 @@ LOGGING = {
         },
     },
 }
+"""
 SENTRY_CELERY_LOGLEVEL = env('DJANGO_SENTRY_LOG_LEVEL', default=logging.INFO)
 RAVEN_CONFIG = {
     'CELERY_LOGLEVEL': env('DJANGO_SENTRY_LOG_LEVEL', default=logging.INFO)
