@@ -187,9 +187,9 @@ LOGGING = {
         },
     },
 }
-SENTRY_CELERY_LOGLEVEL = env('DJANGO_SENTRY_LOG_LEVEL', logging.info)
+SENTRY_CELERY_LOGLEVEL = env('DJANGO_SENTRY_LOG_LEVEL', default=logging.INFO)
 RAVEN_CONFIG = {
-    'CELERY_LOGLEVEL': env('DJANGO_SENTRY_LOG_LEVEL', logging.info)
+    'CELERY_LOGLEVEL': env('DJANGO_SENTRY_LOG_LEVEL', default=logging.INFO)
 }
 
 # Your production stuff: Below this line define 3rd party library settings
