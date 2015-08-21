@@ -41,3 +41,5 @@ celery==3.1.18
 
 
 # Your custom requirements go here
+
+pandas==0.16.2
