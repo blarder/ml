@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Match: {{ object.home_team.name }} v {{ object.away_team.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1><a href="{% url 'football:team_detail' object.home_team.id %}">{{ object.home_team.name }}</a>
+        v
+        <a href="{% url 'football:team_detail' object.away_team.id %}">{{ object.away_team.name }}</a>
+        ({{ object.match_date }})</h1>
+    <h2>Match stats</h2>
+    {% lorem 3 p %}
+</div>
+{% endblock content %}

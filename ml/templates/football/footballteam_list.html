@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Teams{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for team in object_list %}
+    <div class="row col-sm-12">
+        <ul>
+            <a href="{% url 'football:team_detail' team.id %}"> {{ team.name }} </a>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
