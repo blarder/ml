@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}ml{% endblock title %}</title>
+    <title>{% block title %}ML Data Analysis{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -52,6 +52,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'football:team_list' %}">Teams</a></li>
           </ul>
         
           <ul class="nav navbar-nav navbar-right">
@@ -98,6 +99,13 @@
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>
     {% endblock javascript %}
+
+    {% block additional_javascript %}
+    {% endblock additional_javascript %}
+
   </body>
+  <footer>
+    <img src="{% static 'images/bitbellows.png' %}" class="col-xs-12 col-sm-6 col-sm-offset-3">
+  </footer>
 </html>
  

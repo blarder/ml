@@ -10,6 +10,7 @@ class FootballTeamAdmin(admin.ModelAdmin):
 
 @admin.register(MatchResult)
 class MatchResultAdmin(admin.ModelAdmin):
-    pass
+    fields = ['home_team', 'away_team', 'home_goals', 'away_goals', 'match_date']
+    list_display = ['__str__'] + fields
 
 # Register your models here.

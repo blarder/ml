@@ -11,6 +11,14 @@ class FootballTeam(models.Model):
     def __str__(self):
         return self.name
 
+    def all_matches_for_season(self, season_start_year):
+        return self.home_matches.filter(season_start_year=season_start_year) \
+            | self.away_matches.filter(season_start_year=season_start_year)
+
+    def recent_matches(self, number=40):
+        all_games = self.home_matches.all() | self.away_matches.all()
+        return all_games.order_by('-match_date').select_related('home_team', 'away_team')[:number]
+
 
 class MatchResultManager(models.Manager):
 
@@ -43,5 +51,4 @@ class MatchResult(models.Model):
     objects = MatchResultManager()
 
     def __str__(self):
-        return self.home_team.name + ' v ' + self.away_team.name + ', ' \
-            + str(self.match_date) + ' ({}-{})'.format(self.home_goals, self.away_goals)
+        return self.home_team.name + ' v ' + self.away_team.name
