@@ -1,10 +1,33 @@
+import datetime
+
 from django.db import models
 
-from .consumers import FootballDataConsumer
+from .consumers import APIConsumer
 
 
 class FootballTeam(models.Model):
     name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class MatchResultManager(models.Manager):
+
+    def match_from_datum(self, datum):
+        #TODO: move this method to a form
+        datum['home_team'] = FootballTeam.objects.get_or_create(name=datum['home_team'])[0]
+        datum['away_team'] = FootballTeam.objects.get_or_create(name=datum['away_team'])[0]
+        try:
+            # Handle the two possible date formats
+            datum['match_date'] = datetime.datetime.strptime(datum['match_date'], '%d/%m/%y').date()
+        except ValueError:
+            datum['match_date'] = datetime.datetime.strptime(datum['match_date'], '%d/%m/%Y').date()
+        return MatchResult(**datum)
+
+    def bulk_create_from_api(self, api_name, start_year):
+        consumer = APIConsumer.create(self, api_name + 'Consumer', start_year)
+        self.bulk_create([self.match_from_datum(datum) for datum in consumer.get_data()])
 
 
 class MatchResult(models.Model):
@@ -17,10 +40,8 @@ class MatchResult(models.Model):
     home_goals = models.PositiveSmallIntegerField()
     away_goals = models.PositiveSmallIntegerField()
 
+    objects = MatchResultManager()
 
-class MatchResultManager(models.Manager):
-    def bulk_create_from_api(self, start_year):
-        matches_this_season = self.filter(season_start_year=start_year).count()
-
-        consumer = FootballDataConsumer(largest_seen_id=matches_this_season - 1)
-        self.bulk_create([MatchResult(**datum) for datum in consumer.get_data_for_season(start_year)])
+    def __str__(self):
+        return self.home_team.name + ' v ' + self.away_team.name + ', ' \
+            + str(self.match_date) + ' ({}-{})'.format(self.home_goals, self.away_goals)

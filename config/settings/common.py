@@ -43,7 +43,9 @@ THIRD_PARTY_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'ml.users',  # custom users app
+    'ml.users',
+    'football',
+      # custom users app
     # Your stuff: custom apps go here
 )
 
