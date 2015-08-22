@@ -15,7 +15,7 @@ class FootballTeamDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['recent_matches'] = self.object.recent_matches()
         context['chart_config_1'] = Chart(element_id='chart1')
-        context['chart_config_2'] = Chart(element_id='chart2')
+        context['chart_config_2'] = Chart(element_id='chart2', chart_type='Bar')
         return context
 
 
