@@ -21,6 +21,8 @@ class FootballTeamDetail(DetailView):
 
 class MatchResultList(ListView):
     model = MatchResult
+    paginate_by = 10
+    queryset = MatchResult.objects.order_by('-match_date').select_related('home_team', 'away_team')
 
 
 class MatchResultDetail(DetailView):

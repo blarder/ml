@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}Latest Matches{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% for match in object_list %}
+            <div class="post-preview">
+                <a href="{% url 'football:match_detail' match.id %}">
+                    <h2 class="post-title">
+                        {{ match.home_team }} v {{ match.away_team }}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        Final score: {{ match.home_goals }} - {{ match.away_goals }}
+                    </h3>
+                </a>
+                <p class="post-meta">{{ match.match_date }}</p>
+            </div>
+            {% endfor %}
+            <hr>
+            <!-- Pager -->
+            {% if page_obj.has_next %}
+            <ul class="pager">
+                <li class="next">
+                    <a href="?page={{ page_obj.next_page_number }}">Older Posts &rarr;</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
