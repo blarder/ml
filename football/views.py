@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 
 from .models import FootballTeam, MatchResult
 from ml.lib.chart import Chart
@@ -21,8 +21,18 @@ class FootballTeamDetail(DetailView):
 
 class MatchResultList(ListView):
     model = MatchResult
+    paginate_by = 10
+    queryset = MatchResult.objects.order_by('-match_date').select_related('home_team', 'away_team')
 
 
 class MatchResultDetail(DetailView):
     model = MatchResult
     queryset = MatchResult.objects.select_related('home_team', 'away_team')
+
+
+class SeasonList(TemplateView):
+    template_name = 'football/season_list.html'
+
+
+class SeasonDetail(TemplateView):
+    template_name = 'football/season_list.html'

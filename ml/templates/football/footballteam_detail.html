@@ -5,18 +5,16 @@
 {% block title %}Team: {{ object.name }}{% endblock %}
 
 {% block content %}
+<div class="col-md-6">
+    {% chart chart_config_2 %}
+</div>
+<div class="col-md-6">
+    {% chart chart_config_1 %}
+</div>
 <div class="container">
     <h1>{{ object.name }}</h1>
     <h2>Season stats</h2>
     {% lorem 3 p %}
-
-    <div class="col-md-6">
-        {% chart chart_config_1 %}
-    </div>
-    <div class="col-md-6">
-        {% chart chart_config_2 %}
-    </div>
-
 
     <h2>Recent matches</h2>
     {% for match in recent_matches %}

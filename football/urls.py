@@ -29,4 +29,16 @@ urlpatterns = [
         name='match_detail'
     ),
 
+    url(
+        regex=r'^seasons/$',
+        view=views.SeasonList.as_view(),
+        name='season_list'
+    ),
+
+    url(
+        regex=r'^seasons/(?P<pk>[0-9]+)/$',
+        view=views.SeasonDetail.as_view(),
+        name='season_detail'
+    ),
+
 ]
