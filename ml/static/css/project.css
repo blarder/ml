@@ -33,6 +33,18 @@
   border-color: #eed3d7;
 }
 
+.chart rect {
+  fill: steelblue;
+  stroke-width: 2;
+  stroke: black;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
 canvas {
   padding: 0;
   margin: auto;
