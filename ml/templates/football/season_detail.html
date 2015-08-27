@@ -1,19 +1,12 @@
+{% extends "base.html" %}
 {% load static %}
-
-{% block additional_javscript %}
-    <script src="{% static 'js/leaguetable.js' %}"></script>
-{% endblock %}
+{% load league_table %}
 
 {% block content %}
-    <div id="option">
-        <input name="forwardButton"
-               type="button"
-               value="Forward date"
-               onclick="LeagueTable.forwardDate()" />
-        <input name="backButton"
-                   type="button"
-                   value="Back date"
-                   onclick="LeagueTable.backDate()" />
-    </div>
 
+    {% league_table_controls %}
+
+{% endblock %}
+{% block additional_javascript %}
+    {% league_table_js 2004 %}
 {% endblock %}

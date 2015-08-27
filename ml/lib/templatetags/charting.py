@@ -4,6 +4,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.simple_tag(takes_context=True)
 def chart(context, chart_obj):
     chart_js_include = '' if '_chart_js_included' in context \
