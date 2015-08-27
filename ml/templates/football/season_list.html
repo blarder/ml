@@ -1,20 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block additional_javascript %}
-    <script src="{% static 'js/leaguetable.js' %}"></script>
-{% endblock %}
+{% load league_table %}
 
 {% block content %}
-    <div id="option">
-        <input name="forwardButton"
-               type="button"
-               value="Forward date"
-               onclick="LeagueTable.forwardDate()" />
-        <input name="backButton"
-                   type="button"
-                   value="Back date"
-                   onclick="LeagueTable.backDate()" />
-    </div>
+
+    {% for start_year in available_years %}
+        <div class="row col-sm-12">
+            <ul>
+                <a href="{% url 'football:season_detail' start_year %}"> {{ start_year }} - {{ start_year|add:"1" }} </a>
+            </ul>
+        </div>
+    {% endfor %}
 
 {% endblock %}

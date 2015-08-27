@@ -1,9 +1,19 @@
 __author__ = 'brett'
-from django.conf.urls import url
+from django.conf.urls import url, include
+
+from rest_framework import routers
 
 from . import views
+from .api import views as api_views
+
+
+api_router = routers.SimpleRouter()
+api_router.register('matches', api_views.MatchResultViewSet, base_name='matches')
+
 
 urlpatterns = [
+
+    url(r'^api/', include(api_router.urls, namespace='api')),
 
     url(
         regex=r'^teams/$',
@@ -36,7 +46,7 @@ urlpatterns = [
     ),
 
     url(
-        regex=r'^seasons/(?P<pk>[0-9]+)/$',
+        regex=r'^seasons/(?P<season_start_year>[0-9]+)/$',
         view=views.SeasonDetail.as_view(),
         name='season_detail'
     ),

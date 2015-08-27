@@ -43,3 +43,4 @@ celery==3.1.18
 # Your custom requirements go here
 
 pandas==0.16.2
+djangorestframework==3.2.3

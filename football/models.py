@@ -51,6 +51,9 @@ class MatchResultManager(models.Manager):
 
         return MatchResult(**datum)
 
+    def get_available_start_years(self):
+        return self.values_list('season_start_year', flat=True).distinct().order_by('season_start_year')
+
     def bulk_create_from_api(self, api_name, start_year):
         consumer = APIConsumer.create(self, api_name + 'Consumer', start_year)
         with transaction.atomic():
