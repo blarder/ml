@@ -2,11 +2,12 @@
     (function() {
         var width = 500;
         var height = 500;
-        var numberTeams = 20;
+        var numberTeams;
+        var transformBar;
 
         var barWidth = width;
         var barBorderHeight = 3;
-        var barHeight = height / numberTeams;
+        var barHeight;
 
         var teamsData;
 
@@ -115,19 +116,22 @@
             .attr('height', height)
             .attr('class', 'chart');
 
-        var y = d3.scale.linear()
-            .range([height - barHeight - barBorderHeight, barBorderHeight])
-            .domain([numberTeams, 1]);
 
-        var transformBar = function (d) {
-            return 'translate(' + (width - barWidth) / 2 + ',' + y(d.leaguePosition) + ')';
-        };
 
         d3.json('{{ data_endpoint }}', function(error, json) {
             teamsData = extractTeams(json);
             matches = extractMatches(json);
 
-            console.log(matches);
+            numberTeams = teamsData.length;
+            barHeight = height / numberTeams;
+
+            var y = d3.scale.linear()
+                .range([height - barHeight - barBorderHeight, barBorderHeight])
+                .domain([numberTeams, 1]);
+
+            transformBar = function (d) {
+                return 'translate(' + (width - barWidth) / 2 + ',' + y(d.leaguePosition) + ')';
+            };
 
             bar = svg.selectAll('g')
                 .data(teamsData)

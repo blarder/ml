@@ -4,9 +4,12 @@
 
 {% block content %}
 
-    {% league_table_controls %}
+    {% for start_year in available_years %}
+        <div class="row col-sm-12">
+            <ul>
+                <a href="{% url 'football:season_detail' start_year %}"> {{ start_year }} - {{ start_year|add:"1" }} </a>
+            </ul>
+        </div>
+    {% endfor %}
 
-{% endblock %}
-{% block additional_javascript %}
-    {% league_table_js 2004 %}
 {% endblock %}

@@ -46,7 +46,7 @@ urlpatterns = [
     ),
 
     url(
-        regex=r'^seasons/(?P<pk>[0-9]+)/$',
+        regex=r'^seasons/(?P<season_start_year>[0-9]+)/$',
         view=views.SeasonDetail.as_view(),
         name='season_detail'
     ),

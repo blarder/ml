@@ -33,6 +33,11 @@ class MatchResultDetail(DetailView):
 class SeasonList(TemplateView):
     template_name = 'football/season_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['available_years'] = MatchResult.objects.get_available_start_years()
+        return context
+
 
 class SeasonDetail(TemplateView):
-    template_name = 'football/season_list.html'
+    template_name = 'football/season_detail.html'
