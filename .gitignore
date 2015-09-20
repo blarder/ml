@@ -57,5 +57,6 @@ node_modules/
 
 # secret configuration info. and local settings
 secrets.txt
+secrets.py
 
 config/settings/local.py

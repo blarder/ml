@@ -19,8 +19,8 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
-    url(r'^football/', include('football.urls', namespace='football')),
-
+    #url(r'^football/', include('football.urls', namespace='football')),
+    url(r'^jobs/', include('jobs.urls', namespace='jobs'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

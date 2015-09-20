@@ -1,0 +1,11 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+{% load crispy_forms_tags %}
+
+{% block object-tools %}
+    {% if original.job_status == 'n' %}
+        {% crispy deploy_form deploy_form.helper %}
+    {% elif original.job_status == 'd' %}
+        {% crispy collect_form collect_form.helper %}
+    {% endif %}
+{% endblock %}
