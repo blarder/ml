@@ -60,3 +60,6 @@ secrets.txt
 secrets.py
 
 config/settings/local.py
+
+current_jobs/
+deleted_jobs/

@@ -15,7 +15,7 @@ def deploy(request):
     overwrite = request.POST.get('overwrite_script') == 'on'
     job = MLJob.objects.get(id=job_id)
 
-    arc_job_id = deploy_job(job, overwrite_script=overwrite)
+    arc_job_id = deploy_job(job, overwrite_script=overwrite).values()[0]
 
     print('job queued with id {}'.format(arc_job_id))
     job.was_deployed()
@@ -29,7 +29,9 @@ def collect(request):
     job_id = request.POST['job_id']
     job = MLJob.objects.get(id=job_id)
 
-    collect_job(job)
-    job.was_collected()
+    collected = collect_job(job).values()[0]
+
+    if collected:
+        job.was_collected()
 
     return HttpResponseRedirect(reverse('admin:jobs_mljob_change', args=(request.POST['job_id'],)))

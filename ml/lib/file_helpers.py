@@ -10,7 +10,7 @@ from config.settings import secrets
 
 
 def form_dir_path(directory_name):
-    return path.abspath(path.join(path.dirname(path.realpath(__file__)), '..', '..', 'jobs', directory_name))
+    return path.abspath(path.join(path.dirname(path.realpath(__file__)), '..', '..', 'current_jobs', directory_name))
 
 
 def form_deleted_dir_path(directory_name):
@@ -41,6 +41,10 @@ def form_remote_dir_path(directory_name):
 
 def form_job_script_path(directory_name):
     return path.join(form_remote_dir_path(directory_name), 'job.sh')
+
+
+def form_python3_tgz_path():
+    return path.join(path.dirname(path.realpath(__file__)), 'Python-3.4.3.tgz')
 
 
 def make_package(ml_job):

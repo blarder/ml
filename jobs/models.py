@@ -8,7 +8,8 @@ from ml.lib import file_helpers
 class MLJob(models.Model):
 
     SCRIPT_TEMPLATES = (
-        ('torque_job', 'Torque Job'),
+        ('python3_job', 'Python 3 Job'),
+        ('anaconda_job', 'Anaconda Job')
     )
 
     NOT_DEPLOYED = 'n'
@@ -26,7 +27,7 @@ class MLJob(models.Model):
     directory_name = models.CharField(max_length=255, unique=True, validators=[file_helpers.validate_directory_name])
     local_directory = models.FilePathField()
     remote_directory = models.FilePathField()
-    script_template = models.CharField(max_length=255, choices=SCRIPT_TEMPLATES, default='torque_job')
+    script_template = models.CharField(max_length=255, choices=SCRIPT_TEMPLATES, default='anaconda_job')
 
     nodes = models.PositiveSmallIntegerField(blank=True, default=1)
     processes_per_node = models.PositiveSmallIntegerField(blank=True, default=1)
