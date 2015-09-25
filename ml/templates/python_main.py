@@ -1,6 +1,5 @@
 from __future__ import with_statement
 import sys
-import json
 
 from sklearn.pipeline import make_pipeline
 from sklearn.grid_search import GridSearchCV
