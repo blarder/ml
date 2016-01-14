@@ -1,7 +1,9 @@
 ml
 ==============================
 
-Simple ML platform
+Simple ML platform - current iteration just collects data from public APIs and displays/stores, for local use.
+
+Project skeleton originally generated with (including this README) https://github.com/pydanny/cookiecutter-django
 
 
 LICENSE: BSD
